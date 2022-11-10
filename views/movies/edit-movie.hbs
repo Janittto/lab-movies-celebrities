@@ -1,0 +1,18 @@
+<h2>{{myMovie.title}} update</h2>
+<form action = "/movies/{{myMovie._id}}/edit" method="post"> 
+    <input type="text" name="title" placeholder="" value="{{myMovie.title}}">
+    <input type="text" name="genre" placeholder="" value="{{myMovie.genre}}">
+    <input type="text" name="plot" placeholder="" value="{{myMovie.plot}}" >
+<label for="cast">Movie cast</label>
+<select name="cast" id="cast" defaultValue="{{myMovie.cast.0.name}}">
+   <option
+			selected
+			disabled
+			value="{{myMovie.cast.0.name}}"
+		>{{myMovie.cast.0.name}}</option>
+    {{#each movieCast}}
+    <option value="{{this._id}}">{{this.name}}</option>
+    {{/each}}
+</select>
+    <button>Update the movie</button>
+</form>
