@@ -6,10 +6,11 @@
 <label for="cast">Choose celebrities:</label>
 <select name="cast" id="cast">
     <option value="">--Please choose an option--</option>
-    <option value=""></option>
+    {{#each allCelebrities}}
+    <option value="{{this._id}}">{{this.name}}</option>
+    {{/each}}
 </select>
     <button>Create a movie</button>
 </form>
-
 
     

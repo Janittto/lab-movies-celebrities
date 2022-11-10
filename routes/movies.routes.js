@@ -4,9 +4,8 @@ const Movie = require("./../models/Movie.model");
 
 // all your routes here
 router.get("/movies/create", async (req, res, next) => {
-  const getCast = await Celebrity.find(); //.populate("celebrities");
-  console.log(getCast[0].name);
-  res.render("movies/new-movie");
+  const allCelebrities = await Celebrity.find();
+  res.render("movies/new-movie", { allCelebrities });
 });
 
 router.get("/movies", async (req, res, next) => {
@@ -17,13 +16,16 @@ router.get("/movies", async (req, res, next) => {
 
 router.post("/movies/create", async (req, res, next) => {
   const { title, genre, plot, cast } = req.body;
+
   try {
     await Movie.create({ title, genre, plot, cast });
     //User.findByIdAndUpdate(author, { $push: { posts: dbPost._id } });
-    res.redirect("movies/movies");
+    res.redirect("/movies");
   } catch (error) {
     res.render("movies/new-movie");
   }
 });
+
+//router.get("");
 
 module.exports = router;
